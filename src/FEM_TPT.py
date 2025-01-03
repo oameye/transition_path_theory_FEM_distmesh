@@ -114,7 +114,7 @@ def FEM_committor_solver(pts,tri,Aind,Bind,fpot,beta):
     Dir_bdry = np.hstack((Aind,Bind))
     free_nodes = np.setdiff1d(np.arange(0,Npts,1),Dir_bdry,assume_unique=True)
 
-    A = csr_matrix((Npts,Npts), dtype = np.float).toarray()
+    A = csr_matrix((Npts,Npts), dtype = float).toarray()
     b = np.zeros((Npts,1))
     q = np.zeros((Npts,1))
     q[Bind] = 1
@@ -126,7 +126,7 @@ def FEM_committor_solver(pts,tri,Aind,Bind,fpot,beta):
         fac = np.exp(-beta*fpot(vmid))
         ind = tri[j,:]
         indt = np.array(ind)[:,None]
-        B = csr_matrix((3,3),dtype = np.float).toarray()
+        B = csr_matrix((3,3),dtype = float).toarray()
         A[indt,ind] = A[indt,ind] + stima3(v)*fac
 
     # load vector
@@ -145,7 +145,7 @@ def FEM_committor_solver_cylindrical_symmetry(pts,tri,Aind,Bind,fpot,rfac,beta):
     Dir_bdry = np.hstack((Aind,Bind))
     free_nodes = np.setdiff1d(np.arange(0,Npts,1),Dir_bdry,assume_unique=True)
 
-    A = csr_matrix((Npts,Npts), dtype = np.float).toarray()
+    A = csr_matrix((Npts,Npts), dtype = float).toarray()
     b = np.zeros((Npts,1))
     q = np.zeros((Npts,1))
     q[Bind] = 1
@@ -157,7 +157,7 @@ def FEM_committor_solver_cylindrical_symmetry(pts,tri,Aind,Bind,fpot,rfac,beta):
         fac = np.exp(-beta*fpot(vmid))*rfac(vmid)
         ind = tri[j,:]
         indt = np.array(ind)[:,None]
-        # B = csr_matrix((3,3),dtype = np.float).toarray()
+        # B = csr_matrix((3,3),dtype = float).toarray()
         A[indt,ind] = A[indt,ind] + stima3(v)*fac
 
     # load vector
@@ -176,7 +176,7 @@ def FEM_committor_solver_VarCoeff(pts,tri,Aind,Bind,fpot,VarCoeff,beta):
     Dir_bdry = np.hstack((Aind,Bind))
     free_nodes = np.setdiff1d(np.arange(0,Npts,1),Dir_bdry,assume_unique=True)
 
-    A = csr_matrix((Npts,Npts), dtype = np.float).toarray()
+    A = csr_matrix((Npts,Npts), dtype = float).toarray()
     b = np.zeros((Npts,1))
     q = np.zeros((Npts,1))
     q[Bind] = 1
@@ -189,7 +189,7 @@ def FEM_committor_solver_VarCoeff(pts,tri,Aind,Bind,fpot,VarCoeff,beta):
         VC = VarCoeff(vmid[:,1])
         ind = tri[j,:]
         indt = np.array(ind)[:,None]
-        B = csr_matrix((3,3),dtype = np.float).toarray()
+        B = csr_matrix((3,3),dtype = float).toarray()
         A[indt,ind] = A[indt,ind] + stima3(v)*fac*VC**2
 
     # load vector
@@ -207,7 +207,7 @@ def FEM_committor_solver_var_diffusion_matrix(pts,tri,Aind,Bind,Fpts,M11pts,M12p
     Dir_bdry = np.hstack((Aind,Bind))
     free_nodes = np.setdiff1d(np.arange(0,Npts,1),Dir_bdry,assume_unique=True)
 
-    A = csr_matrix((Npts,Npts), dtype = np.float).toarray()
+    A = csr_matrix((Npts,Npts), dtype = float).toarray()
     b = np.zeros((Npts,1))
     q = np.zeros((Npts,1))
     q[Bind] = 1
@@ -243,7 +243,7 @@ def FEM_committor_solver_irreversible(pts,tri,Aind,Bind,fpot,divfree,beta):
     Dir_bdry = np.hstack((Aind,Bind))
     free_nodes = np.setdiff1d(np.arange(0,Npts,1),Dir_bdry,assume_unique=True)
 
-    A = csr_matrix((Npts,Npts), dtype = np.float).toarray()
+    A = csr_matrix((Npts,Npts), dtype = float).toarray()
     b = np.zeros((Npts,1))
     q = np.zeros((Npts,1))
     q[Bind] = 1
@@ -276,7 +276,7 @@ def FEM_committor_solver_Langevin(pts,tri,Aind,Bind,fpot,divfree,beta,gamma):
     Dir_bdry = np.hstack((Aind,Bind))
     free_nodes = np.setdiff1d(np.arange(0,Npts,1),Dir_bdry,assume_unique=True)
 
-    A = csr_matrix((Npts,Npts), dtype = np.float).toarray()
+    A = csr_matrix((Npts,Npts), dtype = float).toarray()
     b = np.zeros((Npts,1))
     q = np.zeros((Npts,1))
     q[Bind] = 1
@@ -311,7 +311,7 @@ def FEM_backward_committor_solver_Langevin(pts,tri,Aind,Bind,fpot,divfree,Hamilt
     Dir_bdry = np.hstack((Aind,Bind))
     free_nodes = np.setdiff1d(np.arange(0,Npts,1),Dir_bdry,assume_unique=True)
 
-    A = csr_matrix((Npts,Npts), dtype = np.float).toarray()
+    A = csr_matrix((Npts,Npts), dtype = float).toarray()
     b = np.zeros((Npts,1))
     q = np.zeros((Npts,1))
     q[Aind] = 1
